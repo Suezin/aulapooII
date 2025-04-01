@@ -5,6 +5,9 @@
  */
 package view;
 
+import controller.UsuarioController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Aluno.saolucas
@@ -29,12 +32,12 @@ public class frlogin extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lbSenha = new javax.swing.JLabel();
-        txtSenha = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         lbTitulo = new javax.swing.JLabel();
         lbEmail = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
         lbIcone = new javax.swing.JLabel();
+        txtSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,14 +50,6 @@ public class frlogin extends javax.swing.JFrame {
         lbSenha.setText("Senha");
         lbSenha.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(lbSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, -1, 50));
-
-        txtSenha.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        txtSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSenhaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 350, 40));
 
         txtEmail.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -80,9 +75,19 @@ public class frlogin extends javax.swing.JFrame {
 
         btnEntrar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnEntrar.setText("Entrar");
+        btnEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEntrarMouseClicked(evt);
+            }
+        });
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
+            }
+        });
+        btnEntrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnEntrarKeyPressed(evt);
             }
         });
         jPanel1.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 90, 40));
@@ -90,29 +95,26 @@ public class frlogin extends javax.swing.JFrame {
         lbIcone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconTitulo.png"))); // NOI18N
         jPanel1.add(lbIcone, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, -1, -1));
 
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenhaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, 350, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
@@ -122,6 +124,38 @@ public class frlogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEntrarActionPerformed
 
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
+        realizarLogin();
+    }//GEN-LAST:event_btnEntrarMouseClicked
+
+    private void btnEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyPressed
+        
+    }//GEN-LAST:event_btnEntrarKeyPressed
+private void realizarLogin(){
+    String email = txtEmail.getText();
+    String senha = new String(txtSenha.getPassword());
+        if(email.equals("")){
+            JOptionPane.showMessageDialog(null, "Campo 'Email' em branco !");
+        return;
+        }
+        if(senha.equals("")){
+            JOptionPane.showMessageDialog(null, "Campo 'Senha' em branco !");
+        return;
+        }
+    UsuarioController controller = new UsuarioController();
+    
+    boolean autenticando = controller.autenticar(email, senha);
+    if(autenticando){
+        JOptionPane.showMessageDialog(null, "Logado com sucesso!");
+    }else {
+        JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto !");
+        
+    }
+}
     /**
      * @param args the command line arguments
      */
@@ -165,6 +199,6 @@ public class frlogin extends javax.swing.JFrame {
     private javax.swing.JLabel lbSenha;
     private javax.swing.JLabel lbTitulo;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtSenha;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

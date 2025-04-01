@@ -1,8 +1,9 @@
 package projetopoo;
+import view.frlogin;
 public class ProjetoPOO {
 
     public static void main(String[] args) {
-        // TODO code application logic here
+      new frlogin().setVisible(true);
     }
     
 }

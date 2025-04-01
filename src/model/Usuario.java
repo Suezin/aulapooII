@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-public class usuario {
+public class Usuario {
     private int pkUsuario;
     private String nome;
     private String email ;
@@ -10,7 +10,7 @@ public class usuario {
     private Date dataNasc;
     private Boolean ativo;
 
-    public usuario(int pkUsuario, String nome, String email, String senha, Date dataNasc, Boolean ativo) {
+    public Usuario(int pkUsuario, String nome, String email, String senha, Date dataNasc, Boolean ativo) {
         this.pkUsuario = pkUsuario;
         this.nome = nome;
         this.email = email;
@@ -19,7 +19,7 @@ public class usuario {
         this.ativo = ativo;
     }
 
-    public usuario() {
+    public Usuario() {
     }
 
     public int getPkUsuario() {
