@@ -18,7 +18,7 @@ import model.Usuario;
 public class UsuarioController {
 
     public boolean autenticar(String email, String senha) {
-        String sql = "SELECT * FROM tbusuario" + "WHERE email = ? AND senha = ?" + "and ativo = true";
+        String sql = "SELECT * FROM tbusuario " + "WHERE email = ? AND senha = ? " + "and ativo = true";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         PreparedStatement comando = null;
@@ -38,7 +38,8 @@ public class UsuarioController {
             JOptionPane.showMessageDialog(null, e.getMessage());
         } finally {
             gerenciador.fecharConexao(comando, resultado);
-            return false;
+            
         }
+        return false;
     }
 }

@@ -6,7 +6,11 @@
 package view;
 
 import controller.UsuarioController;
+import java.awt.event.KeyEvent;
+import java.net.URL;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import utils.Utils;
 
 /**
  *
@@ -19,6 +23,7 @@ public class frlogin extends javax.swing.JFrame {
      */
     public frlogin() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -40,6 +45,11 @@ public class frlogin extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(147, 109, 238));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -100,6 +110,11 @@ public class frlogin extends javax.swing.JFrame {
                 txtSenhaActionPerformed(evt);
             }
         });
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, 350, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,9 +150,24 @@ public class frlogin extends javax.swing.JFrame {
     private void btnEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyPressed
         
     }//GEN-LAST:event_btnEntrarKeyPressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        URL caminhoimagem = getClass().getResource("/images/iconJanela.png");
+        ImageIcon icon = new ImageIcon(caminhoimagem);
+        this.setIconImage(icon.getImage());
+    }//GEN-LAST:event_formWindowOpened
+
+    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() ==KeyEvent.VK_ENTER){
+            realizarLogin();
+        }
+    }//GEN-LAST:event_txtSenhaKeyPressed
 private void realizarLogin(){
     String email = txtEmail.getText();
     String senha = new String(txtSenha.getPassword());
+    
         if(email.equals("")){
             JOptionPane.showMessageDialog(null, "Campo 'Email' em branco !");
         return;
@@ -146,15 +176,20 @@ private void realizarLogin(){
             JOptionPane.showMessageDialog(null, "Campo 'Senha' em branco !");
         return;
         }
+        senha = Utils.calcularHash(senha);
     UsuarioController controller = new UsuarioController();
     
     boolean autenticando = controller.autenticar(email, senha);
     if(autenticando){
-        JOptionPane.showMessageDialog(null, "Logado com sucesso!");
+        
+        FrMenu tela = new FrMenu();
+        tela.setVisible(true);
+        this.dispose();
     }else {
         JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto !");
         
     }
+    
 }
     /**
      * @param args the command line arguments
