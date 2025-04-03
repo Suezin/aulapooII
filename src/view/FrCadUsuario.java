@@ -5,6 +5,12 @@
  */
 package view;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
+import java.util.regex.*;
+
+import javax.swing.JOptionPane;
+import model.Usuario;
+
 /**
  *
  * @author aluno.saolucas
@@ -17,6 +23,7 @@ public class FrCadUsuario extends javax.swing.JDialog {
     public FrCadUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -28,21 +35,273 @@ public class FrCadUsuario extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        painel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtSenha = new javax.swing.JPasswordField();
+        jLabel6 = new javax.swing.JLabel();
+        txtConfirmSenha = new javax.swing.JPasswordField();
+        jLabel7 = new javax.swing.JLabel();
+        txtDataNasc = new javax.swing.JFormattedTextField();
+        chbAtivo = new javax.swing.JCheckBox();
+        btnCancelar = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        painel.setBackground(new java.awt.Color(36, 176, 121));
+
+        jLabel1.setFont(new java.awt.Font("Courier New", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Cadastro de Usuário");
+
+        jLabel3.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Nome");
+
+        jLabel4.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Email");
+
+        jLabel5.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Senha");
+
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenhaActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Confirmar Senha ");
+
+        jLabel7.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Data de Nascimento");
+
+        txtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtDataNasc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDataNascActionPerformed(evt);
+            }
+        });
+
+        chbAtivo.setFont(new java.awt.Font("Courier New", 1, 24)); // NOI18N
+        chbAtivo.setText("Ativo");
+        chbAtivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbAtivoActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setFont(new java.awt.Font("Courier New", 1, 24)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/7853741_logout_kashifarif_exit_out_close_icon.png"))); // NOI18N
+        btnCancelar.setText(" Cancelar");
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseClicked(evt);
+            }
+        });
+
+        btnSalvar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/8666542_save_icon.png"))); // NOI18N
+        btnSalvar.setText(" Salvar");
+        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout painelLayout = new javax.swing.GroupLayout(painel);
+        painel.setLayout(painelLayout);
+        painelLayout.setHorizontalGroup(
+            painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelLayout.createSequentialGroup()
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelLayout.createSequentialGroup()
+                                .addGap(111, 111, 111)
+                                .addComponent(chbAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(painelLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(txtConfirmSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6)))))
+                    .addGroup(painelLayout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(jLabel1))
+                    .addGroup(painelLayout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(btnCancelar)
+                        .addGap(115, 115, 115)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+        painelLayout.setVerticalGroup(
+            painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1)
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelLayout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addGap(10, 10, 10)))
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtConfirmSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chbAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelLayout.createSequentialGroup()
+                        .addComponent(btnSalvar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(199, Short.MAX_VALUE)
+                .addComponent(painel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(painel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void chbAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbAtivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chbAtivoActionPerformed
+
+    private void txtDataNascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataNascActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDataNascActionPerformed
+
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarMouseClicked
+
+    private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
+        if (verificarCampos()) {
+            JOptionPane.showMessageDialog(null, "salvo");
+        } 
+
+    }//GEN-LAST:event_btnSalvarMouseClicked
+    public void gravar(){
+        Usuario usu = new Usuario();
+        
+        String lsenha = new String(txtSenha.getPassword());
+        String hashSenha = utils.Utils.calcularHash(lsenha);
+        
+        Date dataNasc = 
+        usu.setNome(txtNome.getText());
+        usu.setEmail(txtEmail.getText());
+        usu.setSenha(hashSenha);
+        usu.setAtivo(chbAtivo.isSelected());
+        usu.setDataNasc(dataNasc);
+    }
+    
+    public boolean verificarCampos() {
+        String CampNome = new String(txtNome.getText());
+        String CampEmail = new String(txtEmail.getText());
+        String CampData = new String(txtDataNasc.getText());
+        String senha = new String(txtSenha.getPassword());
+        String confirmSenha = new String(txtSenha.getPassword());
+        String dataNascFormat = "\\d{2}/\\d{2}/\\d{4}";
+        boolean dataNascVerificar = Pattern.matches(CampData, dataNascFormat);
+        if (!CampNome.matches("[a-z A-Z]+")) {
+            JOptionPane.showMessageDialog(null, "Erro");
+            return false;
+
+        }
+        if (!CampEmail.matches("[a-zA-Z0-9._-]+@[a-zA-Z0-9]+.com")) {
+            JOptionPane.showMessageDialog(null, "Erro");
+            return false;
+        }
+        if (!(senha.length()>6)) {
+            JOptionPane.showMessageDialog(null, "Digite uma senha de pelos menos 6 digitos !");
+            return false;
+        }
+
+        if (!CampData.equals("")) {
+            return true;
+            
+        }
+        if (dataNascVerificar = false && !(CampData.equals("")) ) {
+                JOptionPane.showMessageDialog(null, "Insira a data de nascimento seguindo o formato 00/00/0000");
+            }
+
+        if (txtNome.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "O campo Nome se encontra vazio !");
+            return false;
+        }
+        if (txtEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "O campo Email se encontra vazio !");
+            return false;
+        }
+
+        if (txtSenha.getPassword().equals("")) {
+            JOptionPane.showMessageDialog(null, "O campo Senha se encontra vazio !");
+            return false;
+        }
+
+        if (!senha.equals(confirmSenha)) {
+            JOptionPane.showMessageDialog(null, "As senhas estão diferentes !");
+            return false;
+        }
+
+        return true;
+    }
 
     /**
      * @param args the command line arguments
@@ -87,5 +346,20 @@ public class FrCadUsuario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JCheckBox chbAtivo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel painel;
+    private javax.swing.JPasswordField txtConfirmSenha;
+    private javax.swing.JFormattedTextField txtDataNasc;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

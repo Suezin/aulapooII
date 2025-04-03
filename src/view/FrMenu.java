@@ -39,9 +39,10 @@ public class FrMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        MenuItemUsuario = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        MenuItemSair = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        MenuItemCad = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -94,20 +95,28 @@ public class FrMenu extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Cadastro");
+        MenuItemUsuario.setText("Cadastro");
 
-        jMenuItem2.setText("jMenuItem2");
-        jMenu1.add(jMenuItem2);
+        jMenuItem2.setText("Usuário");
+        MenuItemUsuario.add(jMenuItem2);
 
-        MenuItemSair.setText("Sair");
-        MenuItemSair.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem5.setText("??");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuItemSairActionPerformed(evt);
+                jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu1.add(MenuItemSair);
+        MenuItemUsuario.add(jMenuItem5);
 
-        jMenuBar2.add(jMenu1);
+        MenuItemCad.setText("Sair");
+        MenuItemCad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemCadActionPerformed(evt);
+            }
+        });
+        MenuItemUsuario.add(MenuItemCad);
+
+        jMenuBar2.add(MenuItemUsuario);
 
         jMenu2.setText("Consulta");
 
@@ -156,10 +165,16 @@ public class FrMenu extends javax.swing.JFrame {
         this.setIconImage(icon.getImage());
     }//GEN-LAST:event_formWindowOpened
 
-    private void MenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemSairActionPerformed
+    private void MenuItemCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemCadActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_MenuItemSairActionPerformed
+    }//GEN-LAST:event_MenuItemCadActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:]
+        FrCadUsuario telaCadastro = new FrCadUsuario(this, rootPaneCheckingEnabled);
+        telaCadastro.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,9 +212,9 @@ public class FrMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem MenuItemSair;
+    private javax.swing.JMenuItem MenuItemCad;
+    private javax.swing.JMenu MenuItemUsuario;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -210,6 +225,7 @@ public class FrMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
