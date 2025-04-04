@@ -6,10 +6,13 @@
 package view;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
+import controller.UsuarioController;
+import java.util.Date;
 import java.util.regex.*;
 
 import javax.swing.JOptionPane;
 import model.Usuario;
+import utils.Utils;
 
 /**
  *
@@ -198,17 +201,11 @@ public class FrCadUsuario extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(199, Short.MAX_VALUE)
-                .addComponent(painel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101))
+            .addComponent(painel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(painel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
+            .addComponent(painel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -233,7 +230,8 @@ public class FrCadUsuario extends javax.swing.JDialog {
 
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         if (verificarCampos()) {
-            JOptionPane.showMessageDialog(null, "salvo");
+            
+            gravar();
         } 
 
     }//GEN-LAST:event_btnSalvarMouseClicked
@@ -243,12 +241,22 @@ public class FrCadUsuario extends javax.swing.JDialog {
         String lsenha = new String(txtSenha.getPassword());
         String hashSenha = utils.Utils.calcularHash(lsenha);
         
-        Date dataNasc = 
+        Date dataNasc = utils.Utils.converterStringToDate(txtDataNasc.getText());
+        
         usu.setNome(txtNome.getText());
         usu.setEmail(txtEmail.getText());
         usu.setSenha(hashSenha);
         usu.setAtivo(chbAtivo.isSelected());
         usu.setDataNasc(dataNasc);
+        
+        UsuarioController controller = new UsuarioController();
+        if(controller.inserirUsuario(usu)){
+            JOptionPane.showMessageDialog(null, "Usuário inserido com sucesso!" );
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Erro ao inserir usuário");
+        }
+            
     }
     
     public boolean verificarCampos() {
