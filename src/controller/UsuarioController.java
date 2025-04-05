@@ -87,4 +87,34 @@ public class UsuarioController {
         }
         return false;
     }
+    public Usuario buscarPorPk(int pkUsuario){
+         String sql = "SELECT * FROM tbusuario " + "WHERE pkusuario = ?";
+
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        PreparedStatement comando = null;
+        ResultSet resultado = null;
+        
+        Usuario usu = new Usuario();
+        
+        try{
+             comando = gerenciador.prepararConexao(sql);
+             comando.setInt(1, pkUsuario);
+             resultado = comando.executeQuery();
+             if(resultado.next()){
+                 usu.setPkUsuario(resultado.getInt("pkusuario"));
+                 usu.setNome(resultado.getString("nome"));
+                 usu.setEmail(resultado.getString("email"));
+                 usu.setSenha(resultado.getString("senha"));
+                 usu.setDataNasc(resultado.getDate("datanasc"));
+                 usu.setAtivo(resultado.getBoolean("ativo"));
+             }
+                 
+        }catch(SQLException e){
+            Logger.getLogger(UsuarioController.class.getName()).log(
+            Level.SEVERE, null, e);
+        }finally{
+            gerenciador.fecharConexao();
+        }
+        return usu; 
+    }
 }

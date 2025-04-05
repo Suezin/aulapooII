@@ -9,6 +9,7 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import controller.UsuarioController;
 import java.util.Date;
 import java.util.regex.*;
+import javax.swing.JFrame;
 
 import javax.swing.JOptionPane;
 import model.Usuario;
@@ -27,6 +28,10 @@ public class FrCadUsuario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+
+    private FrCadUsuario(JFrame jFrame, boolean b, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -341,7 +346,7 @@ public class FrCadUsuario extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrCadUsuario dialog = new FrCadUsuario(new javax.swing.JFrame(), true);
+                FrCadUsuario dialog = new FrCadUsuario(new javax.swing.JFrame(), true, 0);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

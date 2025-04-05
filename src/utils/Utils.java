@@ -42,4 +42,16 @@ public class Utils {
         }
      return data;   
     }
+    
+    public static String converterDateToString(Date data){
+         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+         String texto = "";
+        try {
+            texto = formato.format(data);
+            
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null , "Erro ao formatar a data ");
+        }
+     return texto;  
+    }
 }
