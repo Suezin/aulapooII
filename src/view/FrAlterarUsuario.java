@@ -7,6 +7,7 @@ package view;
 
 import controller.UsuarioController;
 import java.awt.Color;
+import java.util.Date;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import model.Usuario;
@@ -225,6 +226,35 @@ public class FrAlterarUsuario extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSalvarMouseClicked
 
+    public void gravar(){
+        Usuario usuario = new Usuario();
+        
+        usuario.setPkUsuario(pkUsuario);
+        usuario.setNome(txtNome.getText());
+        usuario.setEmail(txtEmail.getText());
+        
+        if(txtSenha.isEditable()){
+            String senha = new String(txtSenha.getPassword());
+            String senhaHash = utils.Utils.calcularHash(senha);
+            usuario.setSenha(senhaHash);
+        }
+        Date data = utils.Utils.converterStringToDate(txtDataNasc.getText());
+        usuario.setDataNasc(data);
+        
+        usuario.setAtivo(chbAtivo.isSelected());
+        
+        UsuarioController controller = new UsuarioController();
+        
+        if(controller.alterarUsuario(usuario)){
+            JOptionPane.showMessageDialog(null , "Usuário: " + usuario.getNome() + " alterado com sucesso !");
+            this.dispose();
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Usuário não alterado ! ");
+        }
+        
+    }
+    
     public boolean verificarCampos() {
         String CampNome = new String(txtNome.getText());
         String CampEmail = new String(txtEmail.getText());

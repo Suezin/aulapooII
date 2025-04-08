@@ -71,12 +71,12 @@ public class UsuarioController {
         
         try {
             comando = gerenciador.prepararConexao(sql);
-            comando.setInt(1, usu.getPkUsuario());
-            comando.setString(2, usu.getNome());
-            comando.setString(3, usu.getEmail());
-            comando.setString(4, usu.getSenha());
-            comando.setDate(5, new java.sql.Date(usu.getDataNasc().getTime()));
-            comando.setBoolean(6, usu.getAtivo());
+            comando.setInt(6, usu.getPkUsuario());
+            comando.setString(1, usu.getNome());
+            comando.setString(2, usu.getEmail());
+            comando.setString(3, usu.getSenha());
+            comando.setDate(4, new java.sql.Date(usu.getDataNasc().getTime()));
+            comando.setBoolean(5, usu.getAtivo());
             comando.executeUpdate();
             return true;
         }catch(SQLException e){
