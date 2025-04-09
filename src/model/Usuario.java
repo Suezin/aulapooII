@@ -71,4 +71,13 @@ public class Usuario {
     }
     
     
+    public String ativoToString(){
+        
+        if(ativo){
+            return "Ativo";
+        }
+        return "Inativo";
+    }
+    
+    
 }

@@ -157,6 +157,11 @@ public class FrMenu extends javax.swing.JFrame {
         jMenuBar2.add(MenuItemUsuario);
 
         jMenu2.setText("Consulta");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
 
         jMenuItem3.setText("Usuário");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -229,6 +234,12 @@ public class FrMenu extends javax.swing.JFrame {
         FrAlterarUsuario telaAlteracao = new FrAlterarUsuario(this, rootPaneCheckingEnabled, pkusuario);
         telaAlteracao.setVisible(true);
     }//GEN-LAST:event_btnAlterarMouseClicked
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+        FrConsultUsuario telaConsulta = new FrConsultUsuario(this, rootPaneCheckingEnabled);
+        telaConsulta.SetVisible(null);
+    }//GEN-LAST:event_jMenu2ActionPerformed
 
     /**
      * @param args the command line arguments
